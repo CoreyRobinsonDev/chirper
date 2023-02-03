@@ -1,20 +1,14 @@
-import { useState } from "react";
-import { onAuthStateChanged } from "firebase/auth";
+import { useRouter } from "next/router";
 
 import Layout from "../Components/Layout";
-import { auth } from "../lib/firebase";
-import type { User } from "../util/types";
+import { useAppSelector } from "../util/hooks";
+
 
 export default function Home() {
-  const [user, setUser] = useState<User | null>();
+  const user = useAppSelector(state => state.user);
+  const router = useRouter();
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      setUser({ ...user.providerData[0], uid: user.uid });
-    } else {
-      setUser(null);
-    }
-  })
+  if (!user) router.push("/sign-in");
 
   return <Layout title="Home - Chirper">
     <main>

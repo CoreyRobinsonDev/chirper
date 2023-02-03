@@ -3,7 +3,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 
 import { auth } from "../../lib/firebase";
 
-export default function SignIn() {
+export default function LogIn() {
   const emailInputElement = useRef<HTMLInputElement>(null);
   const passwordInputElement = useRef<HTMLInputElement>(null);
 
