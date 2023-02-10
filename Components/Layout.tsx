@@ -1,10 +1,11 @@
 import Head from "next/head"
+import Router from "next/router";
 import { useEffect } from "react";
 import { onAuthStateChanged } from 'firebase/auth';
 
 import { auth } from "../lib/firebase";
 import { setUser } from '../lib/features/userSlice';
-import { useAppDispatch } from "../util/hooks";
+import { useAppDispatch, useAppSelector } from "../util/hooks";
 
 type Props = {
   title?: string,
@@ -14,6 +15,11 @@ type Props = {
 
 export default function Layout({title = "Chirper", children}: Props) {
   const dispatch = useAppDispatch();
+  const user = useAppSelector(state => state.user.data);
+
+  useEffect(() => {
+    if (!user) Router.push("/sign-in");
+  }, [user])
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {

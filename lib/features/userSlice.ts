@@ -2,13 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import type { User } from "../../util/types";
 
+type InitialState = {
+  data: User | null
+}
 
-const initialState: User = {
-  displayName: null,
-  email: null,
-  phoneNumber: null,
-  photoURL: null,
-  uid: null
+const initialState: InitialState = {
+  data: null
 } 
 
 const userSlice = createSlice({
@@ -16,11 +15,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, { payload }) => {
-      state.displayName = payload.displayName;
-      state.email =  payload.email;
-      state.phoneNumber =  payload.phoneNumber;
-      state.photoURL =  payload.photoURL;
-      state.uid =  payload.uid;
+      state.data = { ...payload };
     }
   }
 })

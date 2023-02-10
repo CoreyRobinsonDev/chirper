@@ -12,7 +12,7 @@ export default function LogIn() {
   }
 
   return <form onSubmit={(e) => handleSubmit(e)}>
-    <input ref={emailInputElement} type="email" name="email" placeholder="Email" required  />
+    <input ref={emailInputElement} type="email" name="email" placeholder="Email" required />
     <input ref={passwordInputElement} type="password" name="password" placeholder="Password" required />
     <button type="submit">Sign In</button>
   </form>
